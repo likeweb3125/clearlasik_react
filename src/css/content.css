@@ -494,6 +494,7 @@
 .page_user_magazine_view .board_view .board_info {justify-content: center;}
 .page_user_magazine_view .board_view .board_con {border-bottom: 1px solid #ddd;}
 .page_user_magazine_view .board_view .board_con .con {max-width: 1400px; margin: 0 auto; font-size: 18px; padding: 60px 0 100px;}
+.page_user_magazine_view .board_view .board_con .con img{max-width: 100%;}
 .page_user_magazine_view .board_pagination {display: flex; justify-content: space-between; border: none; padding: 0;}
 .page_user_magazine_view .board_pagination .pagination_box {max-width: calc(50% - 150px); display: block; position: relative;}
 .page_user_magazine_view .btn_list_wrap {position: absolute; left: 50%; bottom: 15px; transform: translateX(-50%);}

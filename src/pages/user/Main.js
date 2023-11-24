@@ -307,7 +307,7 @@ const Main = () => {
 
     //뉴스게시판 리스트 가져오기
     const getNewsList = () => {
-        axios.get(`${board_list.replace(":category",49).replace(":limit",10)}`,
+        axios.get(`${board_list.replace(":category",49).replace(":limit",8)}`,
             {headers:{Authorization: `Bearer ${user.loginUser.accessToken}`}}
         )
         .then((res)=>{
