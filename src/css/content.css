@@ -450,7 +450,7 @@
 
 
 /* 매거진 논문 */
-.list_magazine li {margin-top: 24px; position: relative;}
+.list_magazine li {margin-top: 24px; position: relative;cursor: pointer;}
 .list_magazine li:first-of-type {margin-top: 0;}
 .list_magazine .item_box {display: flex; gap: 0 16px;}
 .list_magazine .item_date {flex: 0 0 200px; display: flex; justify-content: center; align-items: center; flex-direction: column; border-radius: 20px; background: #f6f7fb; padding: 20px 0; box-shadow: 16px 16px 20px 0 rgba(0, 0, 0, 0); transition: all .3s;}

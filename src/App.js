@@ -75,9 +75,6 @@ function App() {
 
                 {/* 매거진 - 논문 */}
                 <Route path="/paper" element={<Layout board={true} boardTopData={{loca:"논문",txt:["기술혁신을 통해 놀라운 변화를 추구하는","클리어 특허 논문을 확인하세요."],img:bg_magazine1}}><Paper/></Layout>}/>
-                {/* 매거진 - 논문 상세 */}
-                <Route path="/paper/:board_category/:board_idx" element={<Layout><BoardDetail /></Layout>} />
-
 
                 {/* 클리어병원찾기 */}
                 <Route path="/hospital" element={<Layout><Hospital /></Layout>} />
