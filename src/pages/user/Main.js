@@ -54,6 +54,7 @@ const Main = () => {
     const dispatch = useDispatch();
     const popup = useSelector((state)=>state.popup);
     const user = useSelector((state)=>state.user);
+    const api_uri = enum_api_uri.api_uri;
     const board_list = enum_api_uri.board_list;
     const [confirm, setConfirm] = useState(false);
     const scrollbarRef = useRef(null);
@@ -306,7 +307,7 @@ const Main = () => {
 
     //뉴스게시판 리스트 가져오기
     const getNewsList = () => {
-        axios.get(`${board_list.replace(":category",10).replace(":limit",10)}`,
+        axios.get(`${board_list.replace(":category",49).replace(":limit",10)}`,
             {headers:{Authorization: `Bearer ${user.loginUser.accessToken}`}}
         )
         .then((res)=>{
@@ -853,19 +854,20 @@ const Main = () => {
                                             }
                                         >
                                             {newsList.map((cont,i)=>{
+                                                const img = api_uri+cont.b_img;
                                                 return(
                                                     <SwiperSlide key={i}>
-                                                        <a href="#">
+                                                        <Link to={`/news/${cont.category}/${cont.idx}`}>
                                                             <div className="card">
                                                                 <div className="img">
-                                                                    <img src={img_test} alt="이미지"/>
+                                                                    <img src={img} alt="이미지"/>
                                                                 </div>
                                                                 <b>NEWS</b>
-                                                                <strong>4차 산업혁명 이끌어가기 위해 한국 중소기업·독일 대기업 손을 잡다!</strong>
-                                                                <p>4일 진행된 간담회에서는 중소기업벤처부 박영선 장관을 비롯해 더불어민주당 황희 국회의원(간담회에서는 중소기업벤처부 박영선 장관을 비롯해 더불어민주당 황희 국회의원(간담회에서는 중소기업벤처부 박영선 장관을 비롯해 더불어민주당 황희 국회의원(간담회에서는 중소기업벤처부 박영선 장관을 비롯해 더불어민주당 황희 국회의원(서울 양천구), 한독상공회의소·무역협회·이노비즈협회 대표들과 한국 ...</p>
-                                                                <em>2022.05.12</em>
+                                                                <strong>{cont.b_title}</strong>
+                                                                <p></p>
+                                                                <em>{cont.b_reg_date}</em>
                                                             </div>
-                                                        </a>
+                                                        </Link>
                                                     </SwiperSlide>
                                                 );
                                             })}
