@@ -79,7 +79,7 @@ const CategoryPop = () => {
         .then((res)=>{
             if(res.status === 200){
                 let data = res.data.data;
-                    data.c_menu_ui = data.c_menu_ui[0];
+                    // data.c_menu_ui = data.c_menu_ui[0];
                     data.c_content_type = data.c_content_type[0];
                 setInfo(data);
 
