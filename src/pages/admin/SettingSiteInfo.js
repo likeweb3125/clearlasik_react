@@ -4,6 +4,7 @@ import axios from "axios";
 import { enum_api_uri } from "../../config/enum";
 import * as CF from "../../config/function";
 import { confirmPop } from "../../store/popupSlice";
+import { siteInfo, siteInfoEdit } from "../../store/commonSlice";
 import InputBox from "../../components/component/admin/InputBox";
 import ConfirmPop from "../../components/popup/ConfirmPop";
 
@@ -117,6 +118,9 @@ const SettingSiteInfo = () => {
         )
         .then((res)=>{
             if(res.status === 200){
+                dispatch(siteInfo(body));
+                dispatch(siteInfoEdit(true));
+
                 dispatch(confirmPop({
                     confirmPop:true,
                     confirmPopTit:'알림',

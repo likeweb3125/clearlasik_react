@@ -6,8 +6,9 @@ import { enum_api_uri } from "../../config/enum";
 import * as CF from "../../config/function";
 import { confirmPop } from "../../store/popupSlice";
 import { listPageData, detailPageBack } from "../../store/etcSlice";
+import { boardSettingData } from "../../store/commonSlice";
 import ConfirmPop from "../../components/popup/ConfirmPop";
-import SelectBox from "../../components/component/user/SelectBox";
+import SearchSelectBox from "../../components/component/user/SearchSelectBox";
 import SearchInput from "../../components/component/user/SearchInput";
 
 
@@ -86,7 +87,13 @@ const News = () => {
                 setTotal(data.total_count);
                 setNewsList(data.board_list);
 
-                setCurrentPage(data.current_page); //현재리스트페이지번호 저장
+                //게시판설정정보 store 에 저장
+                const newData = {...data};
+                delete newData.board_list;
+                dispatch(boardSettingData(newData));
+
+                //현재리스트페이지번호 저장
+                setCurrentPage(data.current_page); 
 
                 //리스트페이지 조회 데이터저장
                 let pageData = {
@@ -152,7 +159,7 @@ const News = () => {
     return(<>
         <div className="search_wrap">
             <div className="search_box_type1">
-                <SelectBox 
+                <SearchSelectBox 
                     class="select_box"
                     list={["제목만","제목+내용"]}
                     selected={searchType}

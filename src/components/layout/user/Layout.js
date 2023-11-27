@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import BoardTopCont from "../../component/user/BoardTopCont";
 import Footer from "./Footer";
-import { useLocation } from "react-router-dom";
 
 
 const Layout = (props) => {

@@ -16,6 +16,7 @@ const BoardDetail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { board_category, board_idx } = useParams();
+    const api_uri = enum_api_uri.api_uri;
     const board_detail = enum_api_uri.board_detail;
     const board_modify = enum_api_uri.board_modify;
     const board_file_down = enum_api_uri.board_file_down;
@@ -262,6 +263,10 @@ const BoardDetail = () => {
                             </div>
                         </div>
                         <div className="board_con">
+                            {/* 갤러리게시판일때만 썸네일이미지 보이기 */}
+                            {boardSettingData.c_content_type == 5 &&
+                                <div className="img_box"><img src={api_uri+boardData.b_img} alt="썸네일이미지"/></div>
+                            }
                             <div className="con" dangerouslySetInnerHTML={{ __html: boardData.b_contents }}></div>
                             {boardData.b_file && boardData.b_file.length > 0 &&
                                 <div className="file_section">

@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
+import axios from "axios";
+import * as CF from "./config/function";
+import { enum_api_uri } from './config/enum';
+import { confirmPop } from './store/popupSlice';
+import { siteInfo, siteInfoEdit } from './store/commonSlice';
+import ConfirmPop from './components/popup/ConfirmPop';
 import Layout from './components/layout/user/Layout';
 import Main from "./pages/user/Main";
 import Clearlasik from './pages/user/Clearlasik';
@@ -10,9 +16,6 @@ import News from './pages/user/News';
 import Paper from './pages/user/Paper';
 import BoardDetail from './pages/user/BoardDetail';
 import Hospital from './pages/user/Hospital';
-
-
-
 import AdminLogin from './pages/admin/Login';
 import AdminLayout from './components/layout/admin/Layout';
 import AdminMain from './pages/admin/Main';
@@ -28,15 +31,28 @@ import AdminMaintDetail from "./pages/admin/MaintDetail";
 import AdminMaintWrite from "./pages/admin/MaintWrite";
 import Popup from './components/popup/Popup';
 import './css/default.css';
-
 import bg_magazine1 from "./images/user_images/bg_magazine1.png";
 import bg_magazine2 from "./images/user_images/bg_magazine2.png";
 
 
 function App() {
+    const dispatch = useDispatch();
     const popup = useSelector((state)=>state.popup);
     const etc = useSelector((state)=>state.etc);
+    const common = useSelector((state)=>state.common);
     const location = useLocation();
+    const [confirm, setConfirm] = useState(false);
+    const site_info = enum_api_uri.site_info;
+    const siteId = process.env.REACT_APP_SITE_ID;
+    const [siteInfoData, setSiteInfoData] = useState({});
+
+
+    // Confirm팝업 닫힐때
+    useEffect(()=>{
+        if(popup.confirmPop === false){
+            setConfirm(false);
+        }
+    },[popup.confirmPop]);
 
     
     //페이지이동시 스크롤탑으로 이동 (상세->목록으로 뒤로가기시 제외)
@@ -55,7 +71,61 @@ function App() {
     },[popup.adminCategoryPopModify]);
 
 
-    return(
+    //사이트정보 가져오기
+    const getSiteInfo = () => {
+        axios.get(`${site_info.replace(":site_id",siteId)}`)
+        .then((res)=>{
+            if(res.status === 200){
+                let data = res.data.data;
+                    data.site_id = siteId;
+                setSiteInfoData(data);
+                dispatch(siteInfo(data));
+            }
+        })
+        .catch((error) => {
+            const err_msg = CF.errorMsgHandler(error);
+            dispatch(confirmPop({
+                confirmPop:true,
+                confirmPopTit:'알림',
+                confirmPopTxt: err_msg,
+                confirmPopBtn:1,
+            }));
+            setConfirm(true);
+        });
+    };
+
+    //맨처음 사이트정보 가져오기
+    useEffect(()=>{
+        getSiteInfo();
+    },[]);
+
+    //사이트정보 수정시 변경된 사이트정보 가져오기
+    useEffect(()=>{
+        if(common.siteInfoEdit){
+            getSiteInfo();
+            dispatch(siteInfoEdit(false));
+        }
+    },[common.siteInfoEdit]);
+
+
+
+    return(<>
+        <Helmet>
+            <meta name="title" content={siteInfoData.c_b_title}/>
+            <meta name="description" content={siteInfoData.c_meta} />
+            <meta name="robots" content="index,nofollow" />
+            <meta name="keywords" content={siteInfoData.c_meta_tag} />
+            <meta property="og:title" content={siteInfoData.c_b_title} /> 
+            <meta property="og:description" content={siteInfoData.c_meta} /> 
+            <meta property="og:type" content="website" /> 
+            <meta property="og:url" content="http://www.clearlasik.kr/" />
+            {/* <meta property="og:image" content="https://www" /> */}
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content />
+            <meta name="twitter:description" content={siteInfoData.c_meta} />
+            {/* <meta name="twitter:image" content="https://www" /> */}
+            <title>클리어라식</title>
+        </Helmet>
         <div>
             <Routes>
                 {/* 사용자단---------------------------------------------- */}
@@ -127,7 +197,10 @@ function App() {
             {/* 팝업 */}
             <Popup />
         </div>
-    );
+
+        {/* confirm팝업 */}
+        {confirm && <ConfirmPop />}
+    </>);
 }
 
 export default App;

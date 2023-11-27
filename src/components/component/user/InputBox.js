@@ -4,8 +4,7 @@ import { NumericFormat, PatternFormat } from "react-number-format";
 const InputBox = (props) => {
 
     return(
-        <div className="input_box">
-            {props.countShow && <span className="char_cnt">{`${props.count}/${props.countMax}`}</span>}
+        <div className={props.class}>
             {props.numberOnly ? 
                 <NumericFormat 
                     thousandSeparator="," 
@@ -17,6 +16,15 @@ const InputBox = (props) => {
                     maxLength={props.countMax}
                     className={props.className}
                 />
+                :props.tel ?
+                    <NumericFormat 
+                        placeholder={props.placeholder}
+                        value={props.value}
+                        onChange={props.onChangeHandler}
+                        id={props.id}
+                        maxLength={props.countMax}
+                        className={props.className}
+                    />
                 :   props.phone ? 
                     <PatternFormat 
                         format="###-####-####"

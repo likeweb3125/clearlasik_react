@@ -309,6 +309,7 @@ body,input,select,textarea,button,table {
 .board_view .board_tit .board_info .view_cnt:before {content: ''; width: 24px; height: 24px; position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: url('../images/ic_view_cnt.svg') no-repeat 50% 50%/100%;}
 .board_view .board_con {border-bottom: 1px solid #222;}
 .board_view .board_con .con {padding: 30px 5px 45px; min-height: 200px; /*font-size: 18px; color: #666;*/}
+.board_view .board_con .con img{max-width: 100%;}
 .board_view .board_con .write_btn_wrap {padding-bottom: 40px; text-align: right; display: flex; justify-content: flex-end;}
 .board_view .file_section {padding: 25px 0; display: flex; border-top: 1px solid #ddd; }
 .board_view .file_section span {flex: 0 0 120px; font-size: 20px; font-weight: 500; color: #222; line-height: 30px;}

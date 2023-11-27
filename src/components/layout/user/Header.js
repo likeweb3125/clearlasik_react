@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../images/user_images/logo.png";
 import logo_color from "../../../images/user_images/logo_color.png";
@@ -55,8 +56,15 @@ const GnbItemWithDepth = ({ effect, to, children, depth2 }) => {
 
 const Header = (props) => {
     const location = useLocation();
+    const common = useSelector((state)=>state.common);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMoMenuOpen, setIsMoMenuOpen] = useState(false);
+    const [siteInfo, setSiteInfo] = useState({});
+
+    useEffect(()=>{
+        setSiteInfo(common.siteInfo);
+    },[common.siteInfo]);
+
 
     //헤더메뉴 토글
     const toggleMenu = () => {
@@ -142,10 +150,12 @@ const Header = (props) => {
                                 </GnbItemWithDepth>
                                 <GnbItem to="/hospital">클리어병원 찾기</GnbItem>
                             </ul>
-                            <div className="tel_box">
-                                <span>대표전화</span>
-                                <strong>02-2272-9823</strong>
-                            </div>
+                            {siteInfo.c_tel &&
+                                <div className="tel_box">
+                                    <span>대표전화</span>
+                                    <strong>{siteInfo.c_tel}</strong>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

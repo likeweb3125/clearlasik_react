@@ -301,7 +301,6 @@ const Main = () => {
 
         //뉴스게시판 리스트 가져오기
         getNewsList();
-
     }, []);
 
 
@@ -440,6 +439,14 @@ const Main = () => {
     const initNewsSwiper = (swiper) => {
         setNewsSwiper(swiper);
     };
+
+    //뉴스슬라이드 active index 0
+    useEffect(() => {
+        if (newsSwiper) {
+            newsSwiper.update();
+            newsSwiper.slideTo(0);
+        }
+    }, [newsList, newsSwiper]);
 
 
     return(<>
@@ -846,6 +853,8 @@ const Main = () => {
                                             spaceBetween={18}
                                             centeredSlides={true}
                                             onSwiper={initNewsSwiper}
+                                            observer={true}
+                                            observeParents={true}
                                             breakpoints={
                                                 {
                                                     1418:{slidesPerView:"auto",spaceBetween:0,centeredSlides:false}, //width >= 1418

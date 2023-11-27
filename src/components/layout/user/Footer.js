@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import f_logo from "../../../images/user_images/f_logo.png";
 
-
 const Footer = (props) => {
+    const common = useSelector((state)=>state.common);
+    const [info, setInfo] = useState({});
+
+    useEffect(()=>{
+        setInfo(common.siteInfo);
+    },[common.siteInfo]);
+
 
     //탑버튼 클릭시
     const onTopHandler = () => {
@@ -29,30 +37,40 @@ const Footer = (props) => {
                             <li>
                                 <span>㈜기산과학</span>
                             </li>
-                            <li>
-                                <span>본사 : 서울시 용산구 장문로9길 25 (동빙고동 1-39번지)</span>
-                            </li>
+                            {info.c_address &&
+                                <li>
+                                    <span>본사 : {info.c_address}</span>
+                                </li>
+                            }
                         </ul>
                         <ul>
-                            <li>
-                                <span>TEL. 02)2272-9823</span>
-                            </li>
-                            <li>
-                                <span>FAX. 02)2279-1799</span>
-                            </li>
-                            <li>
-                                <span>E-MAIL. kisantech@kisantech.co.kr</span>
-                            </li>
+                            {info.c_tel && 
+                                <li>
+                                    <span>TEL. {info.c_tel}</span>
+                                </li>
+                            }
+                            {info.c_fax && 
+                                <li>
+                                    <span>FAX. {info.c_fax}</span>
+                                </li>
+                            }
+                            {info.c_email && 
+                                <li>
+                                    <span>E-MAIL. {info.c_email}</span>
+                                </li>
+                            }
                         </ul>
                     </address>
                 </div>
                 <div className="f_util_wrap">
                     <p className="copy">Copyright ⓒ 2018 Kisan all rights reserved.</p>
                 </div>
-                <div className="f_tel">
-                    <span>대표전화</span>
-                    <strong>02-2272-9823</strong>
-                </div>
+                {info.c_tel &&
+                    <div className="f_tel">
+                        <span>대표전화</span>
+                        <strong>{info.c_tel}</strong>
+                    </div>
+                }
             </div>
         </footer>
     </>);

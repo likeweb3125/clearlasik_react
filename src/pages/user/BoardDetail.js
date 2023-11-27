@@ -12,18 +12,16 @@ import ConfirmPop from "../../components/popup/ConfirmPop";
 
 const BoardDetail = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { board_category, board_idx } = useParams();
+    const api_uri = enum_api_uri.api_uri;
     const board_detail = enum_api_uri.board_detail;
-    const board_modify = enum_api_uri.board_modify;
     const board_file_down = enum_api_uri.board_file_down;
-    const board_reply = enum_api_uri.board_reply;
     const user = useSelector((state)=>state.user);
     const popup = useSelector((state)=>state.popup);
     const common = useSelector((state)=>state.common);
     const [confirm, setConfirm] = useState(false);
-    const [title, setTitle] = useState("");
     const [boardData, setBoardData] = useState({});
+    const [boardSettingData, setBoardSettingData] = useState({});
 
 
     //상세페이지 뒤로가기
@@ -76,7 +74,43 @@ const BoardDetail = () => {
 
     useEffect(()=>{
         getBoardData();
+
+        //게시판설정정보 가져오기
+        setBoardSettingData(common.boardSettingData);
     },[board_category,board_idx]);
+
+
+    //첨부파일 다운로드
+    const fileDownHandler = (idx, name) => {
+        axios.get(`${board_file_down.replace(":category",board_category).replace(":parent_idx",board_idx).replace(":idx",idx)}`,
+            {
+                headers:{Authorization: `Bearer ${user.loginUser.accessToken}`},
+                responseType: 'blob' // 요청 데이터 형식을 blob으로 설정
+            }
+        )
+        .then((res)=>{
+            if(res.status === 200){
+                const blob = new Blob([res.data], { type: 'application/octet-stream' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = name; // 파일명 설정
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            }
+        })
+        .catch((error) => {
+            const err_msg = CF.errorMsgHandler(error);
+            dispatch(confirmPop({
+                confirmPop:true,
+                confirmPopTit:'알림',
+                confirmPopTxt: err_msg,
+                confirmPopBtn:1,
+            }));
+            setConfirm(true);
+        });
+    };
 
 
     return(<>
@@ -96,7 +130,28 @@ const BoardDetail = () => {
                                 </div>
                             </div>
                             <div className="board_con">
+                                {/* 갤러리게시판일때만 썸네일이미지 보이기 */}
+                                {boardSettingData.c_content_type == 5 &&
+                                    <div className="img_box"><img src={api_uri+boardData.b_img} alt="썸네일이미지"/></div>
+                                }
                                 <div className="con" dangerouslySetInnerHTML={{ __html: boardData.b_contents }}></div>
+                                {boardData.b_file && boardData.b_file.length > 0 &&
+                                <div className="file_section">
+                                    <span>첨부파일</span>
+                                    <div>
+                                        {boardData.b_file.map((cont,i)=>{
+                                            return(
+                                                <button type="button" key={i}
+                                                    onClick={()=>{
+                                                        const name = cont.original_name;
+                                                        fileDownHandler(cont.idx, name);
+                                                    }}
+                                                >{cont.original_name}</button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            }
                             </div>
                         </div>
                         <div className="board_pagination">

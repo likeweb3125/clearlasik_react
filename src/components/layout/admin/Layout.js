@@ -24,9 +24,7 @@ const Layout = (props) => {
     const location = useLocation();
     const { board_category } = useParams();
     const alarm_list = enum_api_uri.alarm_list;
-    const site_info = enum_api_uri.site_info;
     const navigate = useNavigate();
-    const [siteInfo, setSiteInfo] = useState({});
 
 
     // Confirm팝업 닫힐때
@@ -114,34 +112,8 @@ const Layout = (props) => {
     };
 
 
-    //사이트정보 가져오기
-    const getSiteInfo = () => {
-        axios.get(`${site_info.replace(":site_id",user.siteId)}`,
-            {headers:{Authorization: `Bearer ${user.loginUser.accessToken}`}}
-        )
-        .then((res)=>{
-            if(res.status === 200){
-                let data = res.data.data;
-                    data.site_id = user.siteId;
-                setSiteInfo(data);
-            }
-        })
-        .catch((error) => {
-            const err_msg = CF.errorMsgHandler(error);
-            dispatch(confirmPop({
-                confirmPop:true,
-                confirmPopTit:'알림',
-                confirmPopTxt: err_msg,
-                confirmPopBtn:1,
-            }));
-            setConfirm(true);
-        });
-    };
-
-
     useEffect(()=>{
         getAlarmList();
-        getSiteInfo();
     },[]);
 
 
@@ -201,7 +173,7 @@ const Layout = (props) => {
                         </div>
                     </section>
                 </main>
-                <Footer info={siteInfo} />
+                <Footer/>
             </div>
         </div>
 
