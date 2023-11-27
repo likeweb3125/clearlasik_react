@@ -11,6 +11,7 @@ import img_clearlasik2_1 from "../../images/user_images/img_clearlasik2_1.png";
 import img_clearlasik2_circle from "../../images/user_images/img_clearlasik2_circle.png";
 import img_clearlasik2_2 from "../../images/user_images/img_clearlasik2_2.png";
 import img_clearlasik2_3 from "../../images/user_images/img_clearlasik2_3.png";
+import img_clearlasik1_object from "../../images/user_images/img_clearlasik1_object.png";
 
 
 const Clearlasik = () => {
@@ -231,7 +232,7 @@ const Clearlasik = () => {
                         </div>
                         <span>본 영상은 클리어라식 수술 영상입니다.</span>
                     </div>
-                    <img src="user_images/img_clearlasik1_object.png" alt="이미지" className="object_image"/>
+                    <img src={img_clearlasik1_object} alt="이미지" className="object_image"/>
                 </div>
             </div>
             <div className="sub_section clearlasik_section1 section_con" id="subSect1" ref={sect2Ref}>
