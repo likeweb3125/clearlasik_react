@@ -128,9 +128,9 @@ const BoardDetail = () => {
                             </div>
                             <div className="board_con">
                                 {/* 갤러리게시판일때만 썸네일이미지 보이기 */}
-                                {boardSettingData.c_content_type == 5 &&
+                                {/* {boardSettingData.c_content_type == 5 &&
                                     <div className="img_box"><img src={api_uri+boardData.b_img} alt="썸네일이미지"/></div>
-                                }
+                                } */}
                                 <div className="con" dangerouslySetInnerHTML={{ __html: boardData.b_contents }}></div>
                                 {boardData.b_file && boardData.b_file.length > 0 &&
                                 <div className="file_section">

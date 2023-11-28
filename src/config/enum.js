@@ -20,8 +20,12 @@ exports.enum_api_uri = {
     board_group: `${api_uri}v1/admin/menu/boardGroup`,
     board_group_view: `${api_uri}v1/admin/menu/boardGroup/view/:id`,
     board_group_move: `${api_uri}v1/admin/menu/boardGroupMove`,
-    
 
+
+
+    // 사용자단 ------------------------------------------
+    //팝업
+    auth_popup_list: `${api_uri}v1/auth/popup/`,
 
 
     // 관리자단 ------------------------------------------
@@ -43,7 +47,6 @@ exports.enum_api_uri = {
     popup_open: `${api_uri}v1/admin/popup/open`,
     popup_detail: `${api_uri}v1/admin/popup/:idx`,
 
-
     //환경설정
     site_info: `${api_uri}v1/admin/config/site/:site_id`,
     site_info_modify: `${api_uri}v1/admin/config/site`,
@@ -52,7 +55,6 @@ exports.enum_api_uri = {
     policy_detail: `${api_uri}v1/admin/config/policy/:idx`,
     policy_modify: `${api_uri}v1/admin/config/policy/`,
     level_list: `${api_uri}v1/admin/config/level`,
-
 
     //유지보수
     maint_list: `${api_uri}v1/admin/maintenance/list/:category`,

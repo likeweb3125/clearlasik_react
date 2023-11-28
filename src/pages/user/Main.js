@@ -50,7 +50,7 @@ import img_how3 from "../../images/user_images/img_how3.gif";
 import img_with from "../../images/user_images/img_with.png";
 
 
-const Main = () => {
+const Main = (props) => {
     const dispatch = useDispatch();
     const popup = useSelector((state)=>state.popup);
     const user = useSelector((state)=>state.user);
@@ -449,7 +449,6 @@ const Main = () => {
         }
     }, [newsList, newsSwiper]);
 
-    const popup_list = enum_api_uri.popup_list;
 
 
     return(<>
@@ -930,7 +929,7 @@ const Main = () => {
         </Scrollbar>
 
         <UserPop
-            // list={}
+            list={props.popupList}
         />
 
         {/* confirm팝업 */}

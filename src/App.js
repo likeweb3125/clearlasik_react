@@ -10,6 +10,7 @@ import { siteInfo, siteInfoEdit } from './store/commonSlice';
 import ConfirmPop from './components/popup/ConfirmPop';
 import Layout from './components/layout/user/Layout';
 import Main from "./pages/user/Main";
+import OpenPopup from './pages/user/OpenPopup';
 import Clearlasik from './pages/user/Clearlasik';
 import Ziemer from './pages/user/Ziemer';
 import News from './pages/user/News';
@@ -44,7 +45,10 @@ function App() {
     const [confirm, setConfirm] = useState(false);
     const site_info = enum_api_uri.site_info;
     const siteId = process.env.REACT_APP_SITE_ID;
+    const auth_popup_list = enum_api_uri.auth_popup_list;
     const [siteInfoData, setSiteInfoData] = useState({});
+    const [popupList, setPopupList] = useState([]);
+    const [openPopupList, setOpenPopupList] = useState([]);
 
 
     // Confirm팝업 닫힐때
@@ -94,10 +98,13 @@ function App() {
         });
     };
 
+
     //맨처음 사이트정보 가져오기
     useEffect(()=>{
         getSiteInfo();
+        // getPopupList();
     },[]);
+
 
     //사이트정보 수정시 변경된 사이트정보 가져오기
     useEffect(()=>{
@@ -107,6 +114,45 @@ function App() {
         }
     },[common.siteInfoEdit]);
 
+
+    //팝업리스트 가져오기
+    const getPopupList = () => {
+        axios.get(`${auth_popup_list}?p_type=${"P"}`)
+        .then((res)=>{
+            if(res.status === 200){
+                const list = res.data.data.popup_list;
+                const popList = list.filter((item)=>item.p_layer_pop[0] == 1);
+                const openPopList = list.filter((item)=>item.p_layer_pop[0] == 2);
+                setPopupList(popList);
+                
+                const openPopups = () => {
+                    openPopList.forEach(item => {
+                        const { idx, p_title, p_width_size, p_height_size } = item;
+                        const popupUrl = `/openpopup/${idx}`;
+
+                        // 팝업 창 열기
+                        const existingPopup = window.open(popupUrl, p_title, `width=${p_width_size},height=${p_height_size}`);
+                        
+                        // 기존에 같은 이름의 팝업이 열려있다면 닫기
+                        if (existingPopup) {
+                            existingPopup.close();
+                        }
+                    });
+                }
+                openPopups();
+            }
+        })
+        .catch((error) => {
+            const err_msg = CF.errorMsgHandler(error);
+            dispatch(confirmPop({
+                confirmPop:true,
+                confirmPopTit:'알림',
+                confirmPopTxt: err_msg,
+                confirmPopBtn:1,
+            }));
+            setConfirm(true);
+        });
+    };
 
 
     return(<>
@@ -130,7 +176,10 @@ function App() {
             <Routes>
                 {/* 사용자단---------------------------------------------- */}
                 {/* 메인 */}
-                <Route path="/" element={<Layout main={true}><Main /></Layout>} />
+                <Route path="/" element={<Layout main={true}><Main popupList={popupList} /></Layout>} />
+
+                {/* 관리자단에서 설정한 팝업 (팝업창선택) */}
+                <Route path="/openpopup/:idx" element={<OpenPopup />} />
 
                 {/* 클리어라식 */}
                 <Route path="/clearlasik" element={<Layout><Clearlasik /></Layout>} />
