@@ -510,10 +510,10 @@ const Clearlasik = () => {
                             <div className="section_inner">
                                 <p>
                                     렌즈 왜곡을 최소화, 인터페이스를 통해 중심적 설정이 가능하고 
-                                    <br/>
+                                    <br style={{"display":"block"}}/>
                                     고정압력이 높아 석션 로스 위험이 낮아 사고확률이 적으며, 
-                                    <br/>
-                                    <br/>
+                                    <br style={{"display":"block"}}/>
+                                    <br style={{"display":"block"}}/>
                                     절개창의 위치를 조정할 수 있어서 렌티큘의 중심에 가깝게 절개 할 수 있습니다
                                 </p>
                             </div>

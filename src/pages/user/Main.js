@@ -56,6 +56,7 @@ const Main = (props) => {
     const user = useSelector((state)=>state.user);
     const api_uri = enum_api_uri.api_uri;
     const board_list = enum_api_uri.board_list;
+    const auth_popup_list = enum_api_uri.auth_popup_list;
     const [confirm, setConfirm] = useState(false);
     const scrollbarRef = useRef(null);
     const sect1Ref = useRef(null);
@@ -72,7 +73,8 @@ const Main = (props) => {
     const [howSliderNaviOn, setHowSliderNaviOn] = useState(0);
     const [newsSwiper, setNewsSwiper] = useState(null);
     const [newsList, setNewsList] = useState([]);
-
+    const [popupList, setPopupList] = useState([]);
+    const [openPopupList, setOpenPopupList] = useState([]);
 
     // Confirm팝업 닫힐때
     useEffect(()=>{
@@ -448,6 +450,54 @@ const Main = (props) => {
             newsSwiper.slideTo(0);
         }
     }, [newsList, newsSwiper]);
+
+
+    //팝업리스트 가져오기
+    const getPopupList = () => {
+        axios.get(`${auth_popup_list}?p_type=${"P"}`)
+        .then((res)=>{
+            if(res.status === 200){
+                const list = res.data.data.popup_list;
+                const popList = list.filter((item)=>item.p_layer_pop[0] == 1);
+                const openPopList = list.filter((item)=>item.p_layer_pop[0] == 2);
+                setPopupList(popList);
+                
+                const openPopups = () => {
+                    openPopList.forEach(item => {
+                        const { idx, p_title, p_width_size, p_height_size, p_content } = item;
+                        const popupUrl = `/openpopup/${idx}`;
+
+                        // 팝업 창 열기
+                        const popupWindow = window.open('', p_title, "_blank", "noopener, noreferrer",`width=${p_width_size},height=${p_height_size}`);
+
+                        // 팝업 창에 콘텐츠 추가
+                        if (popupWindow) {
+                            popupWindow.document.write(p_content);
+
+                            // 팝업 창에서 URL로 이동하는 JavaScript 코드 추가
+                            popupWindow.document.write(`<script>window.location.href = "${popupUrl}";</script>`);
+                        }
+                    });
+                }
+                openPopups();
+            }
+        })
+        .catch((error) => {
+            const err_msg = CF.errorMsgHandler(error);
+            dispatch(confirmPop({
+                confirmPop:true,
+                confirmPopTit:'알림',
+                confirmPopTxt: err_msg,
+                confirmPopBtn:1,
+            }));
+            setConfirm(true);
+        });
+    };
+
+
+    useEffect(()=>{
+        // getPopupList();
+    },[]);
 
 
 
@@ -929,7 +979,7 @@ const Main = (props) => {
         </Scrollbar>
 
         <UserPop
-            list={props.popupList}
+            list={popupList}
         />
 
         {/* confirm팝업 */}
