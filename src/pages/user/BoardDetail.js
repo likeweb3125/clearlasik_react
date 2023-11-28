@@ -50,9 +50,7 @@ const BoardDetail = () => {
 
     //게시글정보 가져오기
     const getBoardData = () => {
-        axios.get(`${board_detail.replace(":category",board_category).replace(":idx",board_idx)}`,
-            {headers:{Authorization: `Bearer ${user.loginUser.accessToken}`}}
-        )
+        axios.get(`${board_detail.replace(":category",board_category).replace(":idx",board_idx)}`)
         .then((res)=>{
             if(res.status === 200){
                 let data = res.data.data;
@@ -84,7 +82,6 @@ const BoardDetail = () => {
     const fileDownHandler = (idx, name) => {
         axios.get(`${board_file_down.replace(":category",board_category).replace(":parent_idx",board_idx).replace(":idx",idx)}`,
             {
-                headers:{Authorization: `Bearer ${user.loginUser.accessToken}`},
                 responseType: 'blob' // 요청 데이터 형식을 blob으로 설정
             }
         )

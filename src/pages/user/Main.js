@@ -306,13 +306,14 @@ const Main = () => {
 
     //뉴스게시판 리스트 가져오기
     const getNewsList = () => {
-        axios.get(`${board_list.replace(":category",49).replace(":limit",8)}`,
-            {headers:{Authorization: `Bearer ${user.loginUser.accessToken}`}}
-        )
+        axios.get(`${board_list.replace(":category",49).replace(":limit",8)}`)
         .then((res)=>{
             if(res.status === 200){
-                let data = res.data.data;
-                setNewsList(data.board_list);
+                let list = res.data.data.board_list;
+                if(list.length <= 3){
+                    list = list.concat(list);
+                }
+                setNewsList(list);
             }
         })
         .catch((error) => {

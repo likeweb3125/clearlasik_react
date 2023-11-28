@@ -140,7 +140,6 @@ const InquirePop = () => {
 
         axios.post(`${board_modify}`, formData, {
             headers: {
-                Authorization: `Bearer ${user.loginUser.accessToken}`,
                 "Content-Type": "multipart/form-data",
             },
         })
@@ -302,7 +301,7 @@ const InquirePop = () => {
         </div>
 
         {/* 문의신청완료 confirm팝업 */}
-        {applyOkconfirm && <ConfirmPop closePop="custom" onCloseHandler={()=>setApplyOkConfirm(false)} />}
+        {applyOkconfirm && <ConfirmPop closePop="custom" onCloseHandler={()=>closePopHandler()} />}
 
         {/* confirm팝업 */}
         {confirm && <ConfirmPop />}

@@ -78,9 +78,7 @@ const News = () => {
             searchText = searchTxt;
         }
 
-        axios.get(`${board_list.replace(":category",49).replace(":limit",8)}?page=${pageNum ? pageNum : 1}${searchText.length > 0 ? "&search="+search+"&searchtxt="+searchText : ""}`,
-            {headers:{Authorization: `Bearer ${user.loginUser.accessToken}`}}
-        )
+        axios.get(`${board_list.replace(":category",49).replace(":limit",8)}?page=${pageNum ? pageNum : 1}${searchText.length > 0 ? "&search="+search+"&searchtxt="+searchText : ""}`)
         .then((res)=>{
             if(res.status === 200){
                 let data = res.data.data;
@@ -132,9 +130,7 @@ const News = () => {
     const moreHandler = () => {
         const num = currentPage+1;
 
-        axios.get(`${board_list.replace(":category",49).replace(":limit",8)}?page=${num}${searchTxt.length > 0 ? "&search="+searchType+"&searchtxt="+searchTxt : ""}`,
-            {headers:{Authorization: `Bearer ${user.loginUser.accessToken}`}}
-        )
+        axios.get(`${board_list.replace(":category",49).replace(":limit",8)}?page=${num}${searchTxt.length > 0 ? "&search="+searchType+"&searchtxt="+searchTxt : ""}`)
         .then((res)=>{
             if(res.status === 200){
                 let data = res.data.data;
