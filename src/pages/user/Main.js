@@ -472,7 +472,7 @@ const Main = (props) => {
 
                         // 팝업 창에 콘텐츠 추가
                         if (popupWindow) {
-                            popupWindow.document.write(p_content);
+                            // popupWindow.document.write(p_content);
 
                             // 팝업 창에서 URL로 이동하는 JavaScript 코드 추가
                             popupWindow.document.write(`<script>window.location.href = "${popupUrl}";</script>`);
