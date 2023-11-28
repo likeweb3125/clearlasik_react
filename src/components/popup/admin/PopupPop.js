@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as CF from "../../../config/function";
 import { enum_api_uri } from "../../../config/enum";
@@ -14,6 +15,7 @@ import moment from "moment";
 
 const PopupPop = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const popup = useSelector((state)=>state.popup);
     const user = useSelector((state)=>state.user);
     const popup_detail = enum_api_uri.popup_detail;
@@ -79,13 +81,17 @@ const PopupPop = () => {
         })
         .catch((error) => {
             const err_msg = CF.errorMsgHandler(error);
-            dispatch(confirmPop({
-                confirmPop:true,
-                confirmPopTit:'알림',
-                confirmPopTxt: err_msg,
-                confirmPopBtn:1,
-            }));
-            setConfirm(true);
+            if(error.response.status === 401){//토큰에러시 관리자단 로그인페이지로 이동
+                navigate("/console/login");
+            }else{
+                dispatch(confirmPop({
+                    confirmPop:true,
+                    confirmPopTit:'알림',
+                    confirmPopTxt: err_msg,
+                    confirmPopBtn:1,
+                }));
+                setConfirm(true);
+            }
         });
     };
 
@@ -434,13 +440,17 @@ const PopupPop = () => {
         })
         .catch((error) => {
             const err_msg = CF.errorMsgHandler(error);
-            dispatch(confirmPop({
-                confirmPop:true,
-                confirmPopTit:'알림',
-                confirmPopTxt: err_msg,
-                confirmPopBtn:1,
-            }));
-            setConfirm(true);
+            if(error.response.status === 401){//토큰에러시 관리자단 로그인페이지로 이동
+                navigate("/console/login");
+            }else{
+                dispatch(confirmPop({
+                    confirmPop:true,
+                    confirmPopTit:'알림',
+                    confirmPopTxt: err_msg,
+                    confirmPopBtn:1,
+                }));
+                setConfirm(true);
+            }
         });
     };
 

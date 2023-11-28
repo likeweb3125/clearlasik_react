@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useDropzone } from 'react-dropzone';
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
@@ -19,6 +20,7 @@ import CategoryPopCont7 from "../../component/admin/CategoryPopCont7";
 
 const CategoryPop = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const popup = useSelector((state)=>state.popup);
     const user = useSelector((state)=>state.user);
     const menu_sub_detail = enum_api_uri.menu_sub_detail;
@@ -102,13 +104,17 @@ const CategoryPop = () => {
         })
         .catch((error) => {
             const err_msg = CF.errorMsgHandler(error);
-            dispatch(confirmPop({
-                confirmPop:true,
-                confirmPopTit:'알림',
-                confirmPopTxt: err_msg,
-                confirmPopBtn:1,
-            }));
-            setConfirm(true);
+            if(error.response.status === 401){//토큰에러시 관리자단 로그인페이지로 이동
+                navigate("/console/login");
+            }else{
+                dispatch(confirmPop({
+                    confirmPop:true,
+                    confirmPopTit:'알림',
+                    confirmPopTxt: err_msg,
+                    confirmPopBtn:1,
+                }));
+                setConfirm(true);
+            }
         });
     };
 
@@ -354,13 +360,17 @@ const CategoryPop = () => {
         })
         .catch((error) => {
             const err_msg = CF.errorMsgHandler(error);
-            dispatch(confirmPop({
-                confirmPop:true,
-                confirmPopTit:'알림',
-                confirmPopTxt: err_msg,
-                confirmPopBtn:1,
-            }));
-            setConfirm(true);
+            if(error.response.status === 401){//토큰에러시 관리자단 로그인페이지로 이동
+                navigate("/console/login");
+            }else{
+                dispatch(confirmPop({
+                    confirmPop:true,
+                    confirmPopTit:'알림',
+                    confirmPopTxt: err_msg,
+                    confirmPopBtn:1,
+                }));
+                setConfirm(true);
+            }
         });
     };
 

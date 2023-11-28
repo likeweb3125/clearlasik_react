@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { enum_api_uri } from "../../config/enum";
 import * as CF from "../../config/function";
@@ -11,11 +11,11 @@ import SearchInput from "../../components/component/admin/SearchInput";
 import TableWrap from "../../components/component/admin/TableWrap";
 import ConfirmPop from "../../components/popup/ConfirmPop";
 import Pagination from "../../components/component/admin/Pagination";
-import bank_maint from "../../images/bank_maint.png";
 
 
 const Maint = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const maint_list = enum_api_uri.maint_list;
     const popup = useSelector((state)=>state.popup);
     const user = useSelector((state)=>state.user);
@@ -119,13 +119,17 @@ const Maint = () => {
         })
         .catch((error) => {
             const err_msg = CF.errorMsgHandler(error);
-            dispatch(confirmPop({
-                confirmPop:true,
-                confirmPopTit:'알림',
-                confirmPopTxt: err_msg,
-                confirmPopBtn:1,
-            }));
-            setConfirm(true);
+            if(error.response.status === 401){//토큰에러시 관리자단 로그인페이지로 이동
+                navigate("/console/login");
+            }else{
+                dispatch(confirmPop({
+                    confirmPop:true,
+                    confirmPopTit:'알림',
+                    confirmPopTxt: err_msg,
+                    confirmPopBtn:1,
+                }));
+                setConfirm(true);
+            }
         });
     };
 

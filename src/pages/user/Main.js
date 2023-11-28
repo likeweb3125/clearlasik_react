@@ -12,6 +12,7 @@ import * as CF from "../../config/function";
 import { confirmPop } from "../../store/popupSlice";
 import Footer from "../../components/layout/user/Footer";
 import ConfirmPop from "../../components/popup/ConfirmPop";
+import UserPop from "../../components/popup/user/UserPop";
 import main_visual01 from "../../images/user_images/main_visual01.png";
 import main_visual01_tb from "../../images/user_images/main_visual01_tb.png";
 import main_visual01_m from "../../images/user_images/main_visual01_m.png";
@@ -46,7 +47,6 @@ import prd_card3 from "../../images/user_images/prd_card3.png";
 import img_how1 from "../../images/user_images/img_how1.gif";
 import img_how2 from "../../images/user_images/img_how2.gif";
 import img_how3 from "../../images/user_images/img_how3.gif";
-import img_test from "../../images/user_images/test.jpg";
 import img_with from "../../images/user_images/img_with.png";
 
 
@@ -447,6 +447,8 @@ const Main = () => {
             newsSwiper.slideTo(0);
         }
     }, [newsList, newsSwiper]);
+
+    const popup_list = enum_api_uri.popup_list;
 
 
     return(<>
@@ -925,6 +927,10 @@ const Main = () => {
             </main>
             <Footer main={true} />
         </Scrollbar>
+
+        <UserPop
+            // list={}
+        />
 
         {/* confirm팝업 */}
         {confirm && <ConfirmPop />}

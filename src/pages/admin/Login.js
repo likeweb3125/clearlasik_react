@@ -51,10 +51,10 @@ const Login = () => {
     //로그인하기
     const loginHandler = () => {
         const body = {
-            // m_email:email,
-            // m_password:password,
-            m_email:"sale@kisantech.co.kr",
-            m_password:"excimer7!",
+            m_email:email,
+            m_password:password,
+            // m_email:"sale@kisantech.co.kr",
+            // m_password:"excimer7!",
             m_level:"9" //관리자 회원레벨 9
         };
 
