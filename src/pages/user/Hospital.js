@@ -337,8 +337,6 @@ const Hospital = () => {
         ]
     );
     const [list, setList] = useState([]);           //검색된 전체리스트
-    const [showList, setShowList] = useState([]);   //검색된 전체리스트에서 보여지는 리스트
-    const [hideList, setHideList] = useState([]);   //검색된 전체리스트에서 숨겨진 리스트
     const [areaList, setAreaList] = useState([
         {area:"서울",list:[]},
         {area:"경기",list:[]},
@@ -379,37 +377,6 @@ const Hospital = () => {
         setAreaList(newAreaList);
 
     },[]);
-
-
-    //병원리스트값 변경시 맨처음 최대6개까지만 노출
-    useEffect(()=>{
-        const newList = [...list];
-
-        if(newList.length > 6){
-            const newShowList = newList.splice(0,6);
-            setShowList(newShowList);
-            setHideList(newList);
-        }else{
-            setShowList(newList);
-            setHideList([]);
-        }
-        
-    },[list]);
-
-
-    //더보기버튼 클릭시 6개씩 추가
-    const moreHandler = () => {
-        const newList = [...hideList];
-
-        if(newList.length > 6){
-            const newShowList = newList.splice(0,6);
-            setShowList([...showList,...newShowList]);
-            setHideList(newList);
-        }else{
-            setShowList([...showList,...newList]);
-            setHideList([]);
-        }
-    };
 
 
     //지도 지역클릭시
@@ -551,7 +518,7 @@ const Hospital = () => {
                             </div>
                         </div>
                         <ul className="list_hospital">
-                            {showList.map((cont,i)=>{
+                            {list.map((cont,i)=>{
                                 const logoSrc = require(`../../images/hospital/logo_hospital${cont.id}.png`);
                                 return(
                                     <li key={i} onClick={()=>dispatch(hospitalPop({hospitalPop:true,hospitalPopData:cont}))}>
@@ -565,13 +532,6 @@ const Hospital = () => {
                                 );
                             })}
                         </ul>
-                        <div className="btn_wrap">
-                            {hideList.length > 0 &&
-                                <button type="button" className="btn_style1" onClick={moreHandler}>
-                                    <span>More View</span>
-                                </button>
-                            }
-                        </div>
                     </div>
                 </div>
                 <div className="section_con hospital_section2">
