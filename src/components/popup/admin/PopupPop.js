@@ -371,6 +371,7 @@ const PopupPop = () => {
                 p_top_point:info.p_top_point,
                 p_scroll:scrollCheck,
                 p_link_target:linkCheck,
+                p_link_url:info.p_link_url,
                 p_content:cont,
             };
             axios.put(`${popup_list}`, body, 
@@ -709,6 +710,22 @@ const PopupPop = () => {
                                                         <label htmlFor="check_link2">새창</label>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form_box">
+                                        <div className="form_input">
+                                        </div>
+                                        <div className="form_input">
+                                            <h6>링크</h6>
+                                            <div className="input_wrap">
+                                                <InputBox 
+                                                    type={`text`}
+                                                    placeholder={`url 입력해주세요.`}
+                                                    value={info.p_link_url || ""}
+                                                    onChangeHandler={onInputChangeHandler}
+                                                    id={`p_link_url`}
+                                                />
                                             </div>
                                         </div>
                                     </div>

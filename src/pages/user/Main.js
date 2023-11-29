@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 import { enum_api_uri } from "../../config/enum";
 import * as CF from "../../config/function";
+import util from "../../config/util";
 import { confirmPop } from "../../store/popupSlice";
 import Footer from "../../components/layout/user/Footer";
 import ConfirmPop from "../../components/popup/ConfirmPop";
@@ -74,7 +75,8 @@ const Main = (props) => {
     const [newsSwiper, setNewsSwiper] = useState(null);
     const [newsList, setNewsList] = useState([]);
     const [popupList, setPopupList] = useState([]);
-    const [openPopupList, setOpenPopupList] = useState([]);
+    const [popupType, setPopupType] = useState(null);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     // Confirm팝업 닫힐때
     useEffect(()=>{
@@ -82,6 +84,30 @@ const Main = (props) => {
             setConfirm(false);
         }
     },[popup.confirmPop]);
+
+
+    //화면사이즈 변경될때 width 체크---------
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    },[]);
+
+
+    // 화면사이즈에 따라 popupType 변경
+    useEffect(() => {
+        if(windowWidth >= 1000){
+            setPopupType("P");
+        }else{
+            setPopupType("M");
+        }
+    }, [windowWidth]);
 
 
     useEffect(() => {
@@ -303,7 +329,88 @@ const Main = (props) => {
 
         //뉴스게시판 리스트 가져오기
         getNewsList();
+
     }, []);
+
+
+    //팝업리스트 가져오기
+    useEffect(()=>{
+        if(popupType !== null){
+            getPopupList();
+        }
+    },[popupType]);
+
+
+    //팝업리스트 가져오기
+    const getPopupList = () => {
+        axios.get(`${auth_popup_list}?p_type=${popupType}`)
+        .then((res)=>{
+            if(res.status === 200){
+                const list = res.data.data.popup_list;
+
+                //현재날짜
+                const currentDate = new Date();
+                currentDate.setHours(0, 0, 0, 0); //시간제거
+
+                // 레이어팝업--------
+                let popList = list.filter((item)=>item.p_layer_pop[0] == 1);
+                popList = popList.filter(item => {
+                    // p_e_date에 값이 있으면 현재 날짜와 비교
+                    if (item.p_e_date) {
+                        const endDate = new Date(item.p_e_date.replace(/\./g, '-'));
+                        return endDate > currentDate;
+                    }
+                    // p_e_date에 값이 없거나 빈 문자열이면 포함
+                    return true;
+                });
+                setPopupList(popList);
+                
+                // 새창팝업--------
+                const hideList = util.getCookie("hidePopupList") || [];
+                let openPopList = list.filter((item)=>item.p_layer_pop[0] == 2);
+                //쿠키에 저장된 오늘은그만보기 팝업제외하고 노출
+                openPopList = openPopList.filter(item => !hideList.includes(item.idx));
+
+                openPopList = openPopList.filter(item => {
+                    // p_e_date에 값이 있으면 현재 날짜와 비교
+                    if (item.p_e_date) {
+                        const endDate = new Date(item.p_e_date.replace(/\./g, '-'));
+                        return endDate > currentDate;
+                    }
+                    // p_e_date에 값이 없거나 빈 문자열이면 포함
+                    return true;
+                });
+
+                const openPopups = () => {
+                    openPopList.forEach(item => {
+                        const { idx, p_title, p_width_size, p_height_size, p_top_point, p_left_point } = item;
+                        const popupUrl = `/openpopup/${idx}`;
+                        const property = `width=${p_width_size},height=${p_height_size},top=${p_top_point},left=${p_left_point},scrollbars=no,toolbar=no`;
+
+                        // 팝업 창 열기
+                        const popupWindow = window.open(popupUrl, p_title, property);
+
+                        // 팝업 창에 콘텐츠 추가
+                        if (popupWindow) {
+                            // 팝업 창에서 URL로 이동하는 JavaScript 코드 추가
+                            popupWindow.document.write(`<script>window.location.href = "${popupUrl}";</script>`);
+                        }
+                    });
+                }
+                openPopups();
+            }
+        })
+        .catch((error) => {
+            const err_msg = CF.errorMsgHandler(error);
+            dispatch(confirmPop({
+                confirmPop:true,
+                confirmPopTit:'알림',
+                confirmPopTxt: err_msg,
+                confirmPopBtn:1,
+            }));
+            setConfirm(true);
+        });
+    };
 
 
     //뉴스게시판 리스트 가져오기
@@ -450,54 +557,6 @@ const Main = (props) => {
             newsSwiper.slideTo(0);
         }
     }, [newsList, newsSwiper]);
-
-
-    //팝업리스트 가져오기
-    const getPopupList = () => {
-        axios.get(`${auth_popup_list}?p_type=${"P"}`)
-        .then((res)=>{
-            if(res.status === 200){
-                const list = res.data.data.popup_list;
-                const popList = list.filter((item)=>item.p_layer_pop[0] == 1);
-                const openPopList = list.filter((item)=>item.p_layer_pop[0] == 2);
-                setPopupList(popList);
-                
-                const openPopups = () => {
-                    openPopList.forEach(item => {
-                        const { idx, p_title, p_width_size, p_height_size, p_content } = item;
-                        const popupUrl = `/openpopup/${idx}`;
-
-                        // 팝업 창 열기
-                        const popupWindow = window.open('', p_title, "_blank", "noopener, noreferrer",`width=${p_width_size},height=${p_height_size}`);
-
-                        // 팝업 창에 콘텐츠 추가
-                        if (popupWindow) {
-                            // popupWindow.document.write(p_content);
-
-                            // 팝업 창에서 URL로 이동하는 JavaScript 코드 추가
-                            popupWindow.document.write(`<script>window.location.href = "${popupUrl}";</script>`);
-                        }
-                    });
-                }
-                openPopups();
-            }
-        })
-        .catch((error) => {
-            const err_msg = CF.errorMsgHandler(error);
-            dispatch(confirmPop({
-                confirmPop:true,
-                confirmPopTit:'알림',
-                confirmPopTxt: err_msg,
-                confirmPopBtn:1,
-            }));
-            setConfirm(true);
-        });
-    };
-
-
-    useEffect(()=>{
-        // getPopupList();
-    },[]);
 
 
 
@@ -700,19 +759,19 @@ const Main = (props) => {
                                         <div className="inner_section inner_section1">
                                             <div className="txt">
                                                 <strong>클리어라식은 다릅니다.</strong>
-                                                <span>클리어라식은 각막 내부가 노출되지 않고, <br/>도수와 관계 없이 레이저 시간이 일정하여 더욱 정확한 수술이 가능합니다.</span>
+                                                <span>클리어라식은 각막내부가 노출되지 않습니다.</span>
                                             </div>
                                         </div>
                                         <div className="inner_section inner_section2">
                                             <div className="txt">
                                                 <strong>라섹과 라식의 한계를 <br/>넘은 차세대 시력 교정술</strong>
-                                                <span>클리어라식은 각막의 앞쪽도 잔여 각막으로 남겨 <br/>보다 안정된 각막구조를 유지하여 외부 충격에도 더 강합니다.</span>
+                                                <span>잔여 각막으로 외부충격에 강합니다.</span>
                                             </div>
                                         </div>
                                         <div className="inner_section inner_section3">
                                             <div className="txt">
                                                 <strong>맞춤형 근시 및 난시 교정</strong>
-                                                <span>5000Khz 이상의 빠른 속도로 맞춤 정밀 시력 교정이 가능하여 <br/>근시와 난시를 교정할 수 있습니다.</span>
+                                                <span>빠른 속도로 맞춤 정밀 시력 교정이 가능하여 <br/>근시와 난시를 교정할 수 있습니다.</span>
                                             </div>
                                         </div>
                                     </div>
@@ -732,7 +791,7 @@ const Main = (props) => {
                                                     </strong>
                                                     <em>개개인을 위한 맞춤형 수술<br/>클리어는 가능합니다.</em>
                                                 </div>
-                                                <p>클리어 라식은 각막을 중심으로 절삭이 진행되어 <br/>매끄러운 교정이 어려웠던 기존의 라식의 한계점을 보완하였으며, <br/>정확한 안구 회전과 난시축 교정에 보다 더 집중하여 정밀한 수술을 시행합니다.</p>
+                                                <p>클리어 라식은 각막을 중심으로 절삭이 진행되어 <br/>매끄러운 교정이 어려웠던 기존의 라식의 한계점을 보완합니다.</p>
                                             </div>
                                             <div className="txt_con txt_con2">
                                                 <div className="txt">
@@ -743,7 +802,7 @@ const Main = (props) => {
                                                         <span>맞춤형 교정</span>
                                                     </div>
                                                 </div>
-                                                <p>펄스 길이만 조정가능했던 기존 기기에 비해 클리어 라식은 파장과 펄스를 모두 조정할 수 있어, <br/>환자별 맞춤 로우 에너지를 구현할 수 있습니다. <br/>고해상도의 OCT 실시간 이미지를 통해 각막 실질층을 확인해 <br/>안구 회전(C축)과 난시축을 더욱 정밀하게 교정합니다.</p>
+                                                <p>고해상도의 OCT 실시간 이미지를 통해 각막 실질층을 확인해 <br/>안구 회전(C축)과 난시축을 더욱 정밀하게 교정합니다.</p>
                                             </div>
                                             <div className="txt_con txt_con3">
                                                 <div className="txt">
@@ -977,9 +1036,11 @@ const Main = (props) => {
             </main>
             <Footer main={true} />
         </Scrollbar>
-
+        
+        {/* 관리자단에서 설정한 팝업 */}
         <UserPop
             list={popupList}
+            mo={popupType == "M" ? true : false}
         />
 
         {/* confirm팝업 */}
