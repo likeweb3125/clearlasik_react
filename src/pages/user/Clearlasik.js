@@ -256,12 +256,6 @@ const Clearlasik = () => {
                                 </div>
                                 <span>각막 절편을 생성하는 수술</span>
                             </div>
-                            <div className="box box3">
-                                <div className="inner_circle">
-                                    <strong>타 업계 라식</strong>
-                                </div>
-                                <span>각막 절편을 생성하지 않는 <br/>최소 절개 수술</span>
-                            </div>
                         </div>
                         <div className="box box4">
                             <div className="inner_circle">
@@ -285,11 +279,9 @@ const Clearlasik = () => {
                                 <em>
                                     한단계 진보된 인터페이스
                                     <span>
-                                        <b>렌티큘 중심 위치 조정, 절개창 위치 조절</b>로 <br/><b>개개인에 맞춘 라식술</b>
+                                        <b>렌티큘 중심 위치 조정, <br/>절개창 위치 조절</b>로 <br/><b>개개인에 맞춘 라식술</b>
                                     </span>
                                 </em>
-                                <p className="txt1">스위스 ZIEMER社에서 개발한 4세대 렌티큘 애플리케이션을 이용한 수술로, <br/>기존 기기에 비해 차원 높은 정보처리로 정밀한 레이저 수술을 가능하게 합니다.</p>
-                                <p className="txt2">최소 절개로, 각막 상층부 손상을 최소화함으로, <br/>안구건조증 발생 확률을 줄일 수 있으며, <br/>난시의 유무와 관계없이 근시교정이 가능합니다.</p>
                             </div>
                         </div>
                     </div>
@@ -386,8 +378,7 @@ const Clearlasik = () => {
                             <em>
                                 <i>왜 결국 <b>클리어를</b> 선택할까요?</i>
                             </em>
-                            <span>다른 안과 레이저 수술과는 달리, <br/>클리어는 수술 시간이 짧으며 환자에게 부담이 덜 합니다.</span>
-                            <strong>개개인을 위한 맞춤형 수술, <br/>클리어라식은 가능합니다.</strong>
+                            <strong>클리어는 수술 시간이 짧으며 <br style={{"display":"block"}}/>환자에게 부담이 덜 합니다.</strong>
                         </div>
                         <div className="con">
                             <div className="img_slide_wrap">
@@ -425,12 +416,9 @@ const Clearlasik = () => {
                                         </div>
                                     </div>
                                     <p>
-                                        각막 상태에 적합한 에너지를 사용하기 위해서 파장과 펄스의 길이를 조절할 수 있어야 합니다.
+                                        Low Energy(낮은에너지로) 각막 열 손상 및 
                                         <br/>
-                                        <br/>
-                                        펄스 길이만 조정가능했던 기존 기기에 비해 클리어 라식은 파장과 펄스를 모두 조정할 수 있어, 
-                                        <br/>
-                                        환자별 맞춤 로우 에너지를 구현할 수 있습니다.
+                                        Bubble 발생 감소로 안구 건조증, 빛번짐 현상이 적습니다.
                                     </p>
                                 </div>
                                 <div className="txt_con">
@@ -439,18 +427,13 @@ const Clearlasik = () => {
                                             <span>클리어라식은</span>
                                         </strong>
                                         <div className="move_txt">
-                                            <span>High Rate</span>
+                                            <span>No Tissue Bridges</span>
                                         </div>
                                     </div>
                                     <p>
-                                        기존 스마일 (500kHz)에 비해 10배이상 빨라진 
+                                        촘촘하고 매끄러운 레이저 조사로 레이저 Spot간의 빈공간이 없어, 
                                         <br/>
-                                        클리어라식 (5000kHz)의 레이저펄스 반복률은 낮은 에너지를 사용하더라도
-                                        <br/>
-                                        더 촘촘히 반복되어 매끄러운 절개가 가능합니다. 
-                                        <br/>
-                                        <br/>
-                                        이는 안정적으로 실질 분리를 가능하게 만들어 각막 실질 주변부의 손상을 최소화 합니다.
+                                        lap Lifting 과정의 조직손상을 최소화 합니다.
                                     </p>
                                 </div>
                                 <div className="txt_con">
@@ -463,14 +446,9 @@ const Clearlasik = () => {
                                         </div>
                                     </div>
                                     <p>
-                                        굴절 렌티큘의 정확한 중심화는 시력 예후에 중요하며, 이를 위해 동공중심 (pupil center), 
+                                        동공중심(pupil center), 주시등(fixation light), 
                                         <br/>
-                                        주시등 (fixation light) 또는 각막표시 (corneal marking)와 같은 중심화 옵션이 제공됩니다. 
-                                        <br/>
-                                        <br/>
-                                        또한, 안구회선(cyclotorsion)에 대한 보상 기능이 있으며
-                                        <br/>
-                                        흡인상태에서 렌티큘의 위치를 변경할 수 있어, 빛번짐, 눈부심 등의 부작용을 최소화 하였습니다.
+                                        각막표시 (corneal marking) 같은 중심화 옵션제공합니다.
                                     </p>
                                 </div>
                             </div>
