@@ -5,7 +5,7 @@ const MetaTag = (props) => {
         <Helmet>
             <meta name="title" content={props.info.c_b_title}/>
             <meta name="description" content={props.info.c_meta} />
-            <meta name="robots" content="index,nofollow" />
+            <meta name="robots" content="index,follow" />
             <meta name="keywords" content={props.info.c_meta_tag} />
             <meta property="og:type" content="website"/>
             <meta property="og:title" content={props.info.c_b_title} /> 

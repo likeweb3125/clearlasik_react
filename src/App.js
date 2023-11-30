@@ -36,6 +36,8 @@ import bg_magazine1 from "./images/user_images/bg_magazine1.png";
 import bg_magazine2 from "./images/user_images/bg_magazine2.png";
 
 
+
+
 function App() {
     const dispatch = useDispatch();
     const popup = useSelector((state)=>state.popup);
