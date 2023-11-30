@@ -130,7 +130,7 @@ function App() {
             <meta name="twitter:title" content />
             <meta name="twitter:description" content={siteInfoData.c_meta} />
             {/* <meta name="twitter:image" content="https://www" /> */}
-            <title>클리어라식</title>
+            <title>{siteInfoData.c_web_title}</title>
         </Helmet>
         <div>
             <Routes>
