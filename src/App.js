@@ -118,7 +118,7 @@ function App() {
 
 
     return(<>
-        <MetaTag info={siteInfoData}/>
+        {/* <MetaTag info={siteInfoData}/> */}
         <div>
             <Routes>
                 {/* 사용자단---------------------------------------------- */}
