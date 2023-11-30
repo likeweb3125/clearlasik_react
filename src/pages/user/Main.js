@@ -419,9 +419,14 @@ const Main = (props) => {
         .then((res)=>{
             if(res.status === 200){
                 let list = res.data.data.board_list;
-                if(list.length <= 3){
-                    list = list.concat(list);
+
+                // list의 길이가 1보다 크고 4보다 작을 때만 6개까지 복사 (슬라이드 루프때문)
+                if (list.length > 1 && list.length < 4) {
+                    while (list.length < 6) {
+                        list = list.concat([...list]);
+                    }
                 }
+
                 setNewsList(list);
             }
         })
