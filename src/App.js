@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Helmet } from 'react-helmet-async';
 import axios from "axios";
 import * as CF from "./config/function";
 import { enum_api_uri } from './config/enum';
 import { confirmPop } from './store/popupSlice';
 import { siteInfo, siteInfoEdit } from './store/commonSlice';
+import MetaTag from './components/component/MetaTag';
 import ConfirmPop from './components/popup/ConfirmPop';
 import Layout from './components/layout/user/Layout';
 import Main from "./pages/user/Main";
@@ -116,23 +116,7 @@ function App() {
 
 
     return(<>
-        <Helmet>
-            <meta name="title" content={siteInfoData.c_b_title}/>
-            <meta name="description" content={siteInfoData.c_meta} />
-            <meta name="robots" content="index,nofollow" />
-            <meta name="keywords" content={siteInfoData.c_meta_tag} />
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content={siteInfoData.c_b_title} /> 
-            <meta property="og:description" content={siteInfoData.c_meta} /> 
-            <meta property="og:type" content="website" /> 
-            <meta property="og:url" content="http://www.clearlasik.kr/" />
-            <meta property="og:image" content="http://www.clearlasik.kr/thumbnail.png" />
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:title" content={siteInfoData.c_b_title} />
-            <meta name="twitter:description" content={siteInfoData.c_meta} />
-            <meta name="twitter:image" content="http://www.clearlasik.kr/thumbnail.png" />
-            <title>{siteInfoData.c_b_title}</title>
-        </Helmet>
+        <MetaTag info={siteInfoData}/>
         <div>
             <Routes>
                 {/* 사용자단---------------------------------------------- */}

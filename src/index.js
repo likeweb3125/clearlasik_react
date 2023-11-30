@@ -16,11 +16,11 @@ root.render(
   // <React.StrictMode>
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <HelmetProvider>
+      <HelmetProvider>
+        <BrowserRouter>
           <App />
-        </HelmetProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </HelmetProvider>
     </PersistGate>
   </Provider>
   // </React.StrictMode>
