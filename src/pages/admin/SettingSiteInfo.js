@@ -208,7 +208,7 @@ const SettingSiteInfo = () => {
                                     {error.c_site_name && <em className="txt_err">사이트이름을 입력해주세요.</em>}
                                 </td>
                                 <td></td>
-                                <th>웹 브라우저 타이틀</th>
+                                {/* <th>웹 브라우저 타이틀</th>
                                 <td>
                                     <InputBox 
                                         type={`text`}
@@ -220,7 +220,7 @@ const SettingSiteInfo = () => {
                                         onChangeHandler={onInputChangeHandler}
                                         id={`c_web_title`}
                                     />
-                                </td>
+                                </td> */}
                             </tr>
                             <tr>
                                 <th>대표자</th>
@@ -373,7 +373,7 @@ const SettingSiteInfo = () => {
                                     />
                                 </td>
                                 <td></td>
-                                <th>메타 분류</th>
+                                {/* <th>메타 분류</th>
                                 <td>
                                     <InputBox 
                                         type={`text`}
@@ -382,7 +382,7 @@ const SettingSiteInfo = () => {
                                         onChangeHandler={onInputChangeHandler}
                                         id={`c_meta_type`}
                                     />
-                                </td>
+                                </td> */}
                             </tr>
                         </tbody>
                     </table>

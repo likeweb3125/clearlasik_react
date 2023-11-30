@@ -121,16 +121,17 @@ function App() {
             <meta name="description" content={siteInfoData.c_meta} />
             <meta name="robots" content="index,nofollow" />
             <meta name="keywords" content={siteInfoData.c_meta_tag} />
+            <meta property="og:type" content="website"/>
             <meta property="og:title" content={siteInfoData.c_b_title} /> 
             <meta property="og:description" content={siteInfoData.c_meta} /> 
             <meta property="og:type" content="website" /> 
             <meta property="og:url" content="http://www.clearlasik.kr/" />
-            {/* <meta property="og:image" content="https://www" /> */}
+            <meta property="og:image" content="http://www.clearlasik.kr/thumbnail.png" />
             <meta name="twitter:card" content="summary" />
-            <meta name="twitter:title" content />
+            <meta name="twitter:title" content={siteInfoData.c_b_title} />
             <meta name="twitter:description" content={siteInfoData.c_meta} />
-            {/* <meta name="twitter:image" content="https://www" /> */}
-            <title>{siteInfoData.c_web_title}</title>
+            <meta name="twitter:image" content="http://www.clearlasik.kr/thumbnail.png" />
+            <title>{siteInfoData.c_b_title}</title>
         </Helmet>
         <div>
             <Routes>
