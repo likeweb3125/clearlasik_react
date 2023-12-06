@@ -161,9 +161,6 @@ const Maint = () => {
                     </div>
                 </div>
                 <div className="tit tit2">
-                    <h3>
-                        <b>서비스 관리 및 유지보수 시스템</b>
-                    </h3>
                     <strong>총 {CF.MakeIntComma(boardData.total_count)}건</strong>
                 </div>
                 <div className="board_section">
