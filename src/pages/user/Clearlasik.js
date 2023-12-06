@@ -256,10 +256,16 @@ const Clearlasik = () => {
                                 </div>
                                 <span>각막 절편을 생성하는 수술</span>
                             </div>
+                            <div className="box box3">
+                                <div className="inner_circle">
+                                    <strong>스마일라식</strong>
+                                </div>
+                                <span>각막절편을 생성하지않는</span>
+                            </div>
                         </div>
                         <div className="box box4">
                             <div className="inner_circle">
-                                <strong>클리어라식<b>각막 절편을 생성하지 않는 최소 절개를 안구 회전축을 고려한 수술</b></strong>
+                                <strong>클리어라식<b>각막 절편을 생성하지 않는 최소절개 및 안구회선축을 고려한 수술</b></strong>
                             </div>
                         </div>
                     </div>
