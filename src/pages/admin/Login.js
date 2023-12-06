@@ -112,6 +112,12 @@ const Login = () => {
                                                 setError(newError);
                                             }
                                         }} 
+                                        onKeyDown={(e)=>{
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault(); // Enter 키의 기본 동작(줄 바꿈)을 막음
+                                                loginBtnClickHandler(); // 엔터 키를 눌렀을 때 이벤트 핸들러 실행
+                                            }
+                                        }}
                                     />
                                 </div>
                                 {error.email && <em className="txt_err">이메일을 입력해주세요.</em>}
@@ -130,6 +136,12 @@ const Login = () => {
                                                 let newError = {...error};
                                                     newError.password = false;
                                                 setError(newError);
+                                            }
+                                        }}
+                                        onKeyDown={(e)=>{
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault(); // Enter 키의 기본 동작(줄 바꿈)을 막음
+                                                loginBtnClickHandler(); // 엔터 키를 눌렀을 때 이벤트 핸들러 실행
                                             }
                                         }}
                                     /> 
