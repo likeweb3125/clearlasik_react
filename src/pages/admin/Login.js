@@ -53,8 +53,6 @@ const Login = () => {
         const body = {
             m_email:email,
             m_password:password,
-            // m_email:"sale@kisantech.co.kr",
-            // m_password:"excimer7!",
             m_level:"9" //관리자 회원레벨 9
         };
 
