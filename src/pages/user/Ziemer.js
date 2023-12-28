@@ -191,7 +191,7 @@ const Ziemer = () => {
                             <span>세상을 클리어하게 바라보는 상상을 해보세요.</span>
                             <strong>
                                 <span>
-                                    <i>스위스 맞춤형 안과 치료,</i>
+                                    <i>Customized 시력교정,</i>
                                 </span>
                                 <em>
                                     <i>Ziemer Ophthalmic Systems AG</i>
@@ -204,13 +204,22 @@ const Ziemer = () => {
             <div className="sub_section ziemer_section1 section_con" id="subSect1" ref={sect2Ref}>
                 <div className="section_tit">
                     <em>About Ziemer</em>
-                    <h3>
+                    {/* <h3>
                         <span>지머는 스위스 본사를 둔,</span>
                         <strong>
                             <i>안과, 교정술, 그리고 치료에</i>
                         </strong>
                         <strong>
                             <i>특별한 초점을 맞춘 회사입니다.</i>
+                        </strong>
+                    </h3> */}
+                    <h3> 
+                        <span>Ziemer는,</span>
+                        <strong>
+                            <i>FEMTO초레이저를 이용한</i>
+                        </strong>
+                        <strong>
+                            <i>시력교정에 촛점을 맞춘 회사입니다.</i>
                         </strong>
                     </h3>
                 </div>

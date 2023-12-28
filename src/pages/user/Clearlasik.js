@@ -258,7 +258,7 @@ const Clearlasik = () => {
                             </div>
                             <div className="box box3">
                                 <div className="inner_circle">
-                                    <strong>스마일라식</strong>
+                                    <strong>Lenticule <br/>Extraction <br/>Surgery</strong>
                                 </div>
                                 <span>각막 절편을 생성하지 않는 수술</span>
                             </div>
