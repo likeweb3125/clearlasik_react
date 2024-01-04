@@ -172,7 +172,7 @@ const DesignPopup = () => {
         dispatch(confirmPop({
             confirmPop:true,
             confirmPopTit:'알림',
-            confirmPopTxt: '해당 운영정책을 '+ txt +'하시겠습니까?',
+            confirmPopTxt: '해당 팝업을 '+ txt +'하시겠습니까?',
             confirmPopBtn:2,
         }));
         setUseConfirm(true);
