@@ -264,7 +264,7 @@ const TableWrap = (props) => {
 
                                 return(
                                     <tr key={i}>
-                                        <td>1</td>
+                                        <td>{cont.num}</td>
                                         <td>
                                             <div className="txt_left">
                                                 <span onClick={()=>{dispatch(scrollY(window.scrollY))}}>
