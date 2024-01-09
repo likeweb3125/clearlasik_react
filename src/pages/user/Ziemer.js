@@ -121,7 +121,7 @@ const Ziemer = () => {
     };
 
     const [historyList, setHistoryList] = useState([
-        {year:"2021",txt:"Launch FEMTO Z8 NEO",img:img_ziemer2021_1},
+        {year:"2021",txt:"Launch FEMTO Z8",img:img_ziemer2021_1},
         {year:"2018",txt:"Ziemer’s 20TH anniversary"},
         {year:"2015",txt:"FEMTO LDV Z8 FDA clearance"},
         {year:"2014",txt:"Taiwan office"},
