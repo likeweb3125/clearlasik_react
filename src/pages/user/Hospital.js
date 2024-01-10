@@ -334,6 +334,36 @@ const Hospital = () => {
                 mapKey: "2gxbu",
                 mapTimestamp: "1700639822664"
             },
+            {
+                id: 32,
+                area: "충청",
+                name: "천안김안과 신불당점",
+                address: "충청남도 천안시 서북구 불당33길 22 불당고은타워 4층",
+                tel: "041-417-1115",
+                link: "https://kimeye119.co.kr/bbs/content.php?co_id=clear_smile_lasik",
+                mapKey: "2hmuq",
+                mapTimestamp: "1704871641057"
+            },
+            {
+                id: 33,
+                area: "경기",
+                name: "인천 퍼스트안과",
+                address: "인천광역시 서구 이음1로 377, 5층(원당동,검담 눈담봄101)",
+                tel: "032-562-3888",
+                link: "https://www.firsteye-incheon.co.kr/eyesight/eyesight8_2.php",
+                mapKey: "2hmus",
+                mapTimestamp: "1704872041787"
+            },
+            {
+                id: 34,
+                area: "서울",
+                name: "아이유안과",
+                address: "서울시 송파구 삼전로 84 (현대자동차건물 6.8F)",
+                tel: "02-6951-1500",
+                link: "http://www.iueye.co.kr/",
+                mapKey: "2hmuu",
+                mapTimestamp: "1704872109237"
+            },
         ]
     );
     const [list, setList] = useState([]);           //검색된 전체리스트
