@@ -24,6 +24,7 @@ const MaintWrite = () => {
     const [filesData, setFilesData] = useState(null);
     const [showRaw, setShowRaw] = useState(false);
     const [rawHtml, setRawHtml] = useState('');
+    const siteId = process.env.REACT_APP_SITE_ID;
 
 
 
@@ -186,6 +187,8 @@ const MaintWrite = () => {
         formData.append("password", "");
         formData.append("subject", boardData.subject);
         formData.append("contents", contents);
+        formData.append("company", siteId);
+        formData.append("email", boardData.email);
 
         axios.post(maint_create, formData, {
             headers: {
