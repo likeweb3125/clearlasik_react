@@ -43,12 +43,12 @@ const HospitalPop = () => {
                                 <b>연락처</b>
                                 <span>{popup.hospitalPopData.tel}</span>
                             </li>
-                            <li className="site">
+                            {/* <li className="site">
                                 <b>홈페이지</b>
                                 <span>
                                     <a href={popup.hospitalPopData.link} target="_blank" rel="noreferrer">바로가기</a>
                                 </span>
-                            </li>
+                            </li> */}
                         </ul>
                         <div className="map_area">
                             <div id={`daumRoughmapContainer${popup.hospitalPopData.mapTimestamp}`} className="root_daum_roughmap root_daum_roughmap_landing" style={{ width: '100%' }}></div>

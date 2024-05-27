@@ -684,9 +684,9 @@ const Main = (props) => {
                                             </div>
                                         </div>
                                         <div className={`slide_txt${mainSliderTxtOn === 1 ? " on" : ""}`}>
-                                            <div className="txt txt1">
+                                            {/* <div className="txt txt1">
                                                 <span>No Glasses No Contacts</span>
-                                            </div>
+                                            </div> */}
                                             <div className="txt txt2">
                                                 <span>Just</span>
                                             </div>
@@ -715,10 +715,10 @@ const Main = (props) => {
                                                 <b>클리어라식</b>
                                             </strong>
                                             <strong className="txt2">
-                                                <span>왜 사람들이</span>
+                                                <span>어떤 점이</span>
                                             </strong>
                                             <strong className="txt3">
-                                                <span>선택할까요?</span>
+                                                <span>좋을까요?</span>
                                             </strong>
                                         </div>
                                         <em>What’s different with CLEAR?</em>
@@ -764,13 +764,12 @@ const Main = (props) => {
                                         <div className="inner_section inner_section1">
                                             <div className="txt">
                                                 <strong>클리어라식은 다릅니다.</strong>
-                                                <span>클리어라식은 각막내부가 노출되지 않습니다.</span>
+                                                {/* <span>클리어라식은 각막내부가 노출되지 않습니다.</span> */}
                                             </div>
                                         </div>
                                         <div className="inner_section inner_section2">
                                             <div className="txt">
-                                                <strong>라섹과 라식의 한계를 <br/>넘은 차세대 시력 교정술</strong>
-                                                <span>잔여 각막으로 외부충격에 강합니다.</span>
+                                                <strong>새로운 시력 교정술</strong>
                                             </div>
                                         </div>
                                         <div className="inner_section inner_section3">
@@ -796,7 +795,7 @@ const Main = (props) => {
                                                     </strong>
                                                     <em>개개인을 위한 맞춤형 수술<br/>클리어는 가능합니다.</em>
                                                 </div>
-                                                <p>클리어 라식은 각막을 중심으로 절삭이 진행되어 <br/>매끄러운 교정이 어려웠던 기존의 라식의 한계점을 보완합니다.</p>
+                                                {/* <p>클리어 라식은 각막을 중심으로 절삭이 진행되어 <br/>매끄러운 교정이 어려웠던 기존의 라식의 한계점을 보완합니다.</p> */}
                                             </div>
                                             <div className="txt_con txt_con2">
                                                 <div className="txt">
@@ -815,12 +814,12 @@ const Main = (props) => {
                                                         <span>클리어라식은</span>
                                                     </strong>
                                                     <div className="move_txt">
-                                                        <span>손상 최소화</span>
+                                                        <span>절개부위가 작습니다.</span>
                                                     </div>
                                                 </div>
-                                                <p>낮은 에너지의 정교한 레이저 조사로 각막 2mm 가량 절개하여 <br/>각막 신경 손상을 최소화하여 기존 라식 수술 대비 안구건조증 발생률을 낮췄습니다.</p>
+                                                {/* <p>낮은 에너지의 정교한 레이저 조사로 각막 2mm 가량 절개하여 <br/>각막 신경 손상을 최소화하여 기존 라식 수술 대비 안구건조증 발생률을 낮췄습니다.</p> */}
                                             </div>
-                                            <div className="txt_con txt_con4">
+                                            {/* <div className="txt_con txt_con4">
                                                 <div className="txt">
                                                     <strong>
                                                         <span>클리어라식은</span>
@@ -830,7 +829,7 @@ const Main = (props) => {
                                                     </div>
                                                 </div>
                                                 <p>다른 안과 레이저 수술과는 달리, 클리어는 수술 시간이 짧으며 환자에게 부담이 덜 합니다. <br/>클리어 (CLEAR) 는 낮은 에너지를 사용하는 안전한 최소 침습 시력 교정 수술로, <br/>각막이 안정되는데 도움이 됩니다.</p>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="scroll_content">
@@ -845,11 +844,11 @@ const Main = (props) => {
                                                 <img src={prd_card2} alt="이미지"/>
                                             </div>
                                         </div>
-                                        <div className="con con4">
+                                        {/* <div className="con con4">
                                             <div className="card">
                                                 <img src={prd_card3} alt="이미지"/>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
 
@@ -959,7 +958,7 @@ const Main = (props) => {
                                 </div>
 
                                 <div className="section main_section main_section5" id="sect5" ref={sect5Ref}>
-                                    <h2>지머의 다양한 소식을 <br/>만나보세요.</h2>
+                                    <h2>지머제조사의 다양한 소식을 <br/>만나보세요.</h2>
                                     <div className="new_slider_wrap">
                                         <Swiper
                                             className="news_slider swiper"
