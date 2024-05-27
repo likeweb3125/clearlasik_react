@@ -64,6 +64,7 @@ const Footer = (props) => {
                 </div>
                 <div className="f_util_wrap">
                     <p className="copy">Copyright ⓒ 2018 Kisan all rights reserved.</p>
+                    <p className="copy">FEMTO Z8의 허가증 상 정식명칭은 FEMTO LDV Z8 등이며, 안구 조직의 절개, 파괴, 제거를 목적으로 매질로서 반도체를 이용하는 안과용 레이저 수술기입니다. 이 제품은 ‘의료기기’이며, ‘사용상 주의사항’과 ‘사용방법’을 잘 읽고 사용하십시오. <br/>| 심의번호 000000--000-00-0000 (유효기간 YYMMDD)</p>
                 </div>
                 {info.c_tel &&
                     <div className="f_tel">
@@ -71,6 +72,7 @@ const Footer = (props) => {
                         <strong>{info.c_tel}</strong>
                     </div>
                 }
+                
             </div>
         </footer>
     </>);
