@@ -364,8 +364,19 @@ const Hospital = () => {
                 mapKey: "2hmuu",
                 mapTimestamp: "1704872109237"
             },
+            {
+                id: 35,
+                area: "경상",
+                name: "한빛안과의원",
+                address: "대구 중구 달구벌대로 2109 제일투자신탁",
+                tel: "053-423-2367",
+                link: "https://www.eyeok.co.kr/",
+                mapKey: "2jh6t",
+                mapTimestamp: "1716947944993"
+            },
         ]
     );
+
     const [list, setList] = useState([]);           //검색된 전체리스트
     const [areaList, setAreaList] = useState([
         {area:"서울",list:[]},
