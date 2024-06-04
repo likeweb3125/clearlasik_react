@@ -958,7 +958,7 @@ const Main = (props) => {
                                 </div>
 
                                 <div className="section main_section main_section5" id="sect5" ref={sect5Ref}>
-                                    <h2>지머제조사의 다양한 소식을 <br/>만나보세요.</h2>
+                                    <h2>지머(제조사)의 다양한 소식을 <br/>만나보세요.</h2>
                                     <div className="new_slider_wrap">
                                         <Swiper
                                             className="news_slider swiper"
