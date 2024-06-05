@@ -1027,7 +1027,7 @@ const Main = (props) => {
                                                 <img src={img_with} alt="이미지"/>
                                             </div>
                                             <div className="txt_wrap">
-                                                <p>클리어라식을 이용하는 전국의 병원을 안내해드립니다. <br/>현재 지머와 함께하는 병원을 확인해보세요.</p>
+                                                <p>클리어라식을 이용하는 전국의 병원을 안내해드립니다. <br/>현재 지머(제조사)와 함께하는 병원을 확인해보세요.</p>
                                                 <Link to="/hospital" className="link">병원 검색페이지 이동</Link>
                                             </div>
                                         </div>

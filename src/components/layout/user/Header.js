@@ -102,7 +102,7 @@ const Header = (props) => {
                     <nav>
                         <ul className="gnb">
                             <GnbItem to="/clearlasik">클리어라식</GnbItem>
-                            <GnbItem to="/ziemer">지머</GnbItem>
+                            <GnbItem to="/ziemer">지머(제조사)</GnbItem>
                             <GnbItemWithDepth effect={true} to="/news" depth2={[{to:'/news', children:'뉴스'},{to:'/paper', children:'논문'}]}>
                                 매거진
                             </GnbItemWithDepth>
@@ -123,7 +123,7 @@ const Header = (props) => {
                             </div>
                             <ul className="all_gnb">
                                 <GnbItem to="/clearlasik">클리어라식</GnbItem>
-                                <GnbItem to="/ziemer">지머</GnbItem>
+                                <GnbItem to="/ziemer">지머(제조사)</GnbItem>
                                 <GnbItemWithDepth effect={false} to="/news" depth2={[{to:'/news', children:'뉴스'},{to:'/paper', children:'논문'}]}>
                                     매거진
                                 </GnbItemWithDepth>
@@ -144,7 +144,7 @@ const Header = (props) => {
                             </div>
                             <ul className="m_gnb">
                                 <GnbItem to="/clearlasik">클리어라식</GnbItem>
-                                <GnbItem to="/ziemer">지머</GnbItem>
+                                <GnbItem to="/ziemer">지머(제조사)</GnbItem>
                                 <GnbItemWithDepth effect={false} to="/news" depth2={[{to:'/news', children:'뉴스'},{to:'/paper', children:'논문'}]}>
                                     매거진
                                 </GnbItemWithDepth>
