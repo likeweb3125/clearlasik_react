@@ -931,7 +931,7 @@ const Main = (props) => {
                                                             <div className="slide_txt_wrap">
                                                                 <div className="slide_txt">
                                                                     <strong>렌티큘 추출</strong>
-                                                                    <p>절개된 부분을 통해 각막의 자극을 최소화 하여 <br/>렌티큘을 제거합니다.</p>
+                                                                    <p>절개된 부분을 통해 각막의 자극을 줄여 <br/>렌티큘을 제거합니다.</p>
                                                                     <Link to="/clearlasik" className="btn_style1">
                                                                         <span>Read more</span>
                                                                     </Link>
