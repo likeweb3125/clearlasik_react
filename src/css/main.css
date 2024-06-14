@@ -798,14 +798,14 @@ html, body{scroll-behavior: smooth;}
     
 
     /* 푸터 */
-    .body_user #footer {padding: 30px 0;}
+    .body_user #footer {padding-top: 30px;}
     .body_user #footer .site_info .f_logo {max-width: 140px;}
     .body_user #footer address {padding-top: 20px;}
     .body_user #footer address ul {display: block; text-align: center;}
     .body_user #footer address ul li {padding-right: 0; margin-right: 0; justify-content: center; line-height: 22px;}
     .body_user #footer address ul li:after {display: none;}
     .body_user #footer address span {font-size: 14px;}
-    .body_user #footer .f_util_wrap {padding-top: 5px;}
+    .body_user #footer .f_util_wrap {padding: 5px 12px 0;}
     .body_user #footer p.copy {font-size: 12px;}
     .body_user #footer .f_tel {column-gap: 8px; padding-top: 25px;}
     .body_user #footer .f_tel span {font-size: 16px;}
