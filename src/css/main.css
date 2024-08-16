@@ -790,8 +790,8 @@ html, body{scroll-behavior: smooth;}
     .main_section6 h2 {font-size: 54px; gap: 0 8px;}
     .main_section6 .section_con .con_inner h3 {line-height: 90px; top: 70px;}
     .main_section6 .section_con .con_inner h4 {line-height: 90px; top: 160px;}
-    .main_section6 .section_con .con_inner h3 span {font-size: 80px;}
-    .main_section6 .section_con .con_inner h4 span {font-size: 90px;}
+    .main_section6 .section_con .con_inner h3 span {font-size: 70px;}
+    .main_section6 .section_con .con_inner h4 span {font-size: 65px;}
     .main_section6 .section_con .txt_wrap p {font-size: 18px; padding: 0 30px 5px;}
     .main_section6 .section_con .txt_wrap p:before {display: none;}
     .main_section6 .section_con .txt_wrap .link {width: 76px; height: 76px;}
