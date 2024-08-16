@@ -726,7 +726,7 @@ html, body{scroll-behavior: smooth;}
     .main_slider_txt .slide_txt span {white-space: inherit;}
     .main_slider_txt .slide_txt .txt1 span {font-size: 18px;}
     .main_slider_txt .slide_txt .txt2 span {font-size: 9vw;}
-    .main_slider_txt .slide_txt .txt3 span {font-size: 80px; line-height: 1;}
+    .main_slider_txt .slide_txt .txt3 span {font-size: 65px; line-height: 1;}
     .main_slider_wrap .main_slider .tb_img {display: none;}
     .main_slider_wrap .main_slider .m_img {display: block;}
     .object_image_wrap .object_image .tb_img {display: none;}
