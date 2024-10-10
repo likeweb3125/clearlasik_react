@@ -374,6 +374,16 @@ const Hospital = () => {
                 mapKey: "2jh6t",
                 mapTimestamp: "1716947944993"
             },
+            {
+                id: 36,
+                area: "서울",
+                name: "눈에미소안과",
+                address: "서울 강남구 강남대로 364 미왕빌딩 3층, 7층, 8층",
+                tel: "02-501-7725",
+                link: "https://www.eyemiso.com/main/main.html",
+                mapKey: "2kun4",
+                mapTimestamp: "1728530100984"
+            },
         ]
     );
 
