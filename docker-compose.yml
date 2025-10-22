@@ -1,28 +1,19 @@
-name : clearlasik_react
+name : clearlasik
 services:
   react-app:
     build:
       context: .
       dockerfile: Dockerfile
+      target: production-server
     restart: always
     ports:
-      - "4003:3000"
-    volumes:
-      - .:/app
-      - clearlasik_react_node_modules:/app/node_modules
+      - "4003:80"
     environment:
       - NODE_ENV=production
       - REACT_APP_API_URL=https://api.clearlasik.kr
       - TZ=Asia/Seoul
-    env_file:
-      - ./.env
-    command: >
-      sh -c "npm install && npm start"
     networks:
       - clearlasik-network
-
-volumes:
-  clearlasik_react_node_modules:
 
 networks:
   clearlasik-network:

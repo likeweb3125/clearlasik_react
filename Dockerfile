@@ -7,13 +7,10 @@ WORKDIR /app
 # 패키지 파일들 복사
 COPY package*.json ./
 
-# 의존성 설치
-RUN npm ci --only=production && npm cache clean --force
-
 # 개발 스테이지
 FROM base as development
 
-# 개발 의존성 포함하여 모든 의존성 설치
+# 모든 의존성 설치 (개발 의존성 포함)
 RUN npm ci
 
 # 소스 코드 복사
@@ -27,6 +24,9 @@ CMD ["npm", "start"]
 
 # 프로덕션 빌드 스테이지
 FROM base as production
+
+# 모든 의존성 설치
+RUN npm ci
 
 # 소스 코드 복사
 COPY . .
