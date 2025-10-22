@@ -1,4 +1,5 @@
-const api_uri = "http://api.clearlasik.kr/";
+// const api_uri = "http://api.clearlasik.kr/";
+const api_uri = "https://clearapi.likeweb.co.kr/";
 
 exports.enum_api_uri = {
     api_uri: `${api_uri}`,
